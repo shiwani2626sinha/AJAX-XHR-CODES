@@ -8,16 +8,25 @@ function loadData() {
    //specify the type of request made and url and sync or async. 
    xhr.open('GET', 'data.txt', true);
 
-   xhr.onload = function() {
+   xhr.onload = function() {  //readystate step 4
     if(this.status === 200) {
         console.log(this.responseText);
     }
    }
 
+   //Optional - used for spinner/loaders
+   xhr.onprogress = function() {
+       console.log('READYSTATE', xhr.readyState);
+   }
+
+   xhr.onerror = function () {
+       console.log('Request error...')
+   }
+
    xhr.send();
 
 
-   //readState values
+   //readyState values
    //0: request not initialised
    //1: server connection established
    //2: request received
